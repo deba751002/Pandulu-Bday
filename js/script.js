@@ -54,20 +54,69 @@
     });
   })();
 
-  // ---------- Cinematic page transitions (film-cut cross-fade between pages) ----------
+  // ---------- Letterbox (fixed black bars, cinema-screen framing) ----------
+  (function letterbox() {
+    ["top", "bottom"].forEach(function (side) {
+      var bar = document.createElement("div");
+      bar.className = "letterbox-bar " + side;
+      bar.setAttribute("aria-hidden", "true");
+      document.body.appendChild(bar);
+    });
+  })();
+
+  // ---------- Cinematic page transitions: film-cut cross-fade + chapter title card ----------
   (function pageTransitions() {
     var overlay = document.createElement("div");
     overlay.className = "page-transition";
     overlay.setAttribute("aria-hidden", "true");
     document.body.appendChild(overlay);
 
-    // Cover-to-reveal on arrival: two rAFs so the browser paints the opaque
-    // frame first, then transitions it away instead of skipping straight in.
-    requestAnimationFrame(function () {
+    var chapterTag = document.querySelector(".chapter-tag");
+    var titleCard = null;
+    if (chapterTag && !reduceMotion) {
+      var parts = chapterTag.textContent.split("·").map(function (s) { return s.trim(); });
+      titleCard = document.createElement("div");
+      titleCard.className = "title-card";
+      var eyebrow = document.createElement("span");
+      eyebrow.className = "title-card-eyebrow";
+      eyebrow.textContent = parts[0] || "";
+      var rule = document.createElement("span");
+      rule.className = "title-card-rule";
+      var main = document.createElement("span");
+      main.className = "title-card-main";
+      main.textContent = parts[1] || parts[0] || "";
+      titleCard.appendChild(eyebrow);
+      titleCard.appendChild(rule);
+      titleCard.appendChild(main);
+      overlay.appendChild(titleCard);
+    }
+
+    if (reduceMotion) {
       requestAnimationFrame(function () {
-        overlay.classList.add("hidden");
+        requestAnimationFrame(function () {
+          overlay.classList.add("hidden");
+        });
       });
-    });
+    } else if (titleCard) {
+      // Hold on the black title card like a film's chapter slate, then cut to the page.
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          titleCard.classList.add("show");
+        });
+      });
+      setTimeout(function () {
+        titleCard.classList.remove("show");
+      }, 1500);
+      setTimeout(function () {
+        overlay.classList.add("hidden");
+      }, 2000);
+    } else {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          overlay.classList.add("hidden");
+        });
+      });
+    }
 
     if (reduceMotion) return;
 
@@ -77,6 +126,7 @@
         var href = link.getAttribute("href");
         if (!href || link.target === "_blank") return;
         e.preventDefault();
+        if (titleCard) titleCard.remove();
         overlay.classList.remove("hidden");
         setTimeout(function () {
           window.location.href = href;
