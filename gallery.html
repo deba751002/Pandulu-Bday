@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chapter Three &mdash; Little Moments, Kept</title>
+<link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/themes.css" />
+</head>
+<body data-page="gallery">
+
+<canvas id="sky"></canvas>
+<div class="hearts-layer" id="heartsLayer" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<audio id="bgMusic" src="audio/gallery-song.mp3" loop preload="auto"></audio>
+<button class="music-toggle" id="musicToggle" type="button" aria-label="Toggle music">
+  <span class="music-toggle-icon" aria-hidden="true"></span>
+</button>
+<a class="back-link" href="letter.html">&larr; back</a>
+
+<main>
+  <div class="page-header">
+    <div class="bunting page-bunting"></div>
+    <img class="logo-badge" src="images/logo.svg" alt="A heart with Pandulu's name inside it" width="52" height="52" />
+    <span class="chapter-tag">chapter three &middot; little moments, kept</span>
+    <div class="chapter-dots" aria-hidden="true">
+      <span></span><span></span><span class="current"></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="garland" aria-hidden="true">
+    <span class="bud"></span><span class="bud"></span><span class="bud"></span><span class="bud"></span>
+    <span class="bud"></span><span class="bud"></span><span class="bud"></span><span class="bud"></span>
+    <span class="bud"></span><span class="bud"></span><span class="bud"></span><span class="bud"></span>
+    <span class="bud"></span><span class="bud"></span><span class="bud"></span><span class="bud"></span>
+    <span class="bud"></span><span class="bud"></span><span class="bud"></span><span class="bud"></span>
+  </div>
+
+  <section class="gallery-intro reveal">
+    <span class="label reveal-child">a few pages from our story, stacked like a pyramid</span>
+    <h2 class="reveal-child">Little moments, kept</h2>
+    <span class="ornament reveal-child" aria-hidden="true">&#10070;</span>
+    <p class="reveal-child">Not every memory makes it into words &mdash; some just live in a photograph. Click one to look closer, or shuffle the stack.</p>
+    <button class="btn btn-shuffle reveal-child" id="shuffleBtn" type="button">shuffle our memories</button>
+  </section>
+
+  <div class="reel" id="reel" aria-label="An auto-playing montage of our memories"></div>
+
+  <div class="pyramid" id="pyramid" aria-label="Photo pyramid of memories"></div>
+
+  <div class="next-wrap">
+    <a class="btn-next" href="wish.html">make a wish <span class="arrow">&rarr;</span></a>
+    <span class="next-hint">one candle, just for practice</span>
+  </div>
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close photo">&times;</button>
+  <img id="lightboxImg" src="" alt="" />
+  <p id="lightboxCaption"></p>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

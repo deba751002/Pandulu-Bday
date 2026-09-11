@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>For Pandulu, My Everything</title>
+<link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/themes.css" />
+</head>
+<body data-page="invite">
+
+<canvas id="sky"></canvas>
+<div class="hearts-layer" id="heartsLayer" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<audio id="bgMusic" src="audio/opening-theme.mp3" data-continuous-key="opening-theme" preload="auto"></audio>
+<button class="music-toggle" id="musicToggle" type="button" aria-label="Toggle music">
+  <span class="music-toggle-icon" aria-hidden="true"></span>
+</button>
+
+<div class="gate" id="gate">
+  <div class="gate-balloons" id="gateBalloons" aria-hidden="true"></div>
+  <div class="gate-inner">
+    <div class="bunting page-bunting"></div>
+    <img class="logo-badge" src="images/logo.svg" alt="A heart with Pandulu's name inside it" width="64" height="64" />
+    <span class="label">a little something for you</span>
+    <h1 class="gate-title">Happy Birthday,<br />Pandulu</h1>
+    <button class="envelope" id="envelopeBtn" type="button" aria-label="Open your surprise" data-next="hero.html">
+      <span class="envelope-shadow"></span>
+      <span class="envelope-back"></span>
+      <span class="envelope-letter">
+        <span class="envelope-letter-line"></span>
+        <span class="envelope-letter-line"></span>
+        <span class="envelope-letter-heart">&hearts;</span>
+      </span>
+      <span class="envelope-flap">
+        <span class="envelope-seal">P</span>
+      </span>
+    </button>
+    <p class="gate-hint">tap the envelope to open your surprise</p>
+  </div>
+
+  <div class="balloon-launch" id="balloonLaunch" aria-hidden="true"></div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

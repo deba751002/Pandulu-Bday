@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chapter Five &mdash; Happy Birthday, Pandulu</title>
+<link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/themes.css" />
+</head>
+<body data-page="celebrate">
+
+<canvas id="sky"></canvas>
+<div class="hearts-layer" id="heartsLayer" aria-hidden="true"></div>
+<div class="balloons-layer" id="balloonsLayer" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<audio id="bgMusic" src="audio/wish-song.mp3" loop preload="auto"></audio>
+<button class="music-toggle" id="musicToggle" type="button" aria-label="Toggle music">
+  <span class="music-toggle-icon" aria-hidden="true"></span>
+</button>
+<a class="back-link" href="wish.html">&larr; back</a>
+
+<main>
+  <div class="page-header">
+    <div class="bunting page-bunting"></div>
+    <img class="logo-badge" src="images/logo.svg" alt="A heart with Pandulu's name inside it" width="52" height="52" />
+    <span class="chapter-tag">chapter five &middot; happy birthday</span>
+    <div class="chapter-dots" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span class="current"></span>
+    </div>
+  </div>
+
+  <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+    <defs>
+      <clipPath id="heartClip" clipPathUnits="objectBoundingBox">
+        <path d="M0.5,0.9375 C0.18,0.6875 0.04,0.4792 0.04,0.2917 C0.04,0.125 0.17,0.0208 0.32,0.0208 C0.42,0.0208 0.48,0.09375 0.5,0.15625 C0.52,0.09375 0.58,0.0208 0.68,0.0208 C0.83,0.0208 0.96,0.125 0.96,0.2917 C0.96,0.4792 0.82,0.6875 0.5,0.9375 Z" />
+      </clipPath>
+    </defs>
+  </svg>
+
+  <section class="celebrate reveal" id="celebrate">
+    <span class="label reveal-child">one more thing</span>
+    <h2 class="reveal-child">Go on, celebrate a little</h2>
+    <div class="glass-card glass-card-tight reveal-child">
+      <p>Press on the Celebrate Button.</p>
+      <button class="btn btn-confetti" id="confettiBtn" type="button">celebrate</button>
+    </div>
+    <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+  </section>
+
+  <section class="arc-hero" id="arcHero">
+    <svg class="arc-text" viewBox="0 0 400 130" aria-hidden="true">
+      <defs>
+        <path id="arcPath" d="M20,120 Q200,4 380,120" />
+        <linearGradient id="arcGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#f0c78a" />
+          <stop offset="50%" stop-color="#e8a35c" />
+          <stop offset="100%" stop-color="#c9455f" />
+        </linearGradient>
+      </defs>
+      <text class="arc-text-label" text-anchor="middle">
+        <textPath href="#arcPath" startOffset="50%">Happy Birthday, Pandulu</textPath>
+      </text>
+    </svg>
+
+    <p class="heart-note">Wishing you a very happy 26th birthday, Pandulu.</p>
+
+    <div class="heart-photo-wrap" id="heartFlip" tabindex="0" role="button" aria-label="Tap or hover to reveal Pandulu's photo">
+      <div class="heart-glow" aria-hidden="true"></div>
+      <div class="heart-flip-inner">
+        <div class="heart-face heart-front">
+          <div class="heart-face-clip">
+            <div class="heart-fill" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="heart-face heart-back">
+          <div class="heart-face-clip">
+            <img src="images/06-festival-lights.jpg" alt="Pandulu" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="heart-hint">tap the heart</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span>&#10022;</span></div>
+
+  <section class="love-collage-section reveal">
+    <span class="label reveal-child">a few more reasons</span>
+    <h2 class="reveal-child">Every one of these, I'd choose again</h2>
+    <div class="heart-pulse reveal-child" aria-hidden="true">&#10084;</div>
+
+    <div class="love-collage reveal-child" id="loveCollage" aria-label="A scattered collage of favorite photos"></div>
+
+    <div class="glass-card glass-card-tight reveal-child">
+      <p>For the way you turn up for everyone you love, for every photo that made me smile just looking for it, for the version of me that only exists when I'm around you &mdash; happy birthday, Pandulu. I love you more than any page on this site could hold.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p class="label">with everything I have</p>
+    <p class="signature">Happy Birthday, my Pandulu.</p>
+    <p class="from">forever yours</p>
+  </footer>
+
+  <div class="next-wrap">
+    <a class="btn-next" href="index.html">play it again <span class="arrow">&#8635;</span></a>
+    <span class="next-hint">from the very first envelope</span>
+  </div>
+</main>
+
+<script src="js/script.js"></script>
+</body>
+</html>

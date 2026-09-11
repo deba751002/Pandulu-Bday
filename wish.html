@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chapter Four &mdash; Make a Wish</title>
+<link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/themes.css" />
+</head>
+<body data-page="wish">
+
+<canvas id="sky"></canvas>
+<div class="hearts-layer" id="heartsLayer" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<audio id="bgMusic" src="audio/wish-bell.wav" loop preload="auto"></audio>
+<button class="music-toggle" id="musicToggle" type="button" aria-label="Toggle music">
+  <span class="music-toggle-icon" aria-hidden="true"></span>
+</button>
+<a class="back-link" href="gallery.html">&larr; back</a>
+
+<main>
+  <div class="page-header">
+    <div class="bunting page-bunting"></div>
+    <img class="logo-badge" src="images/logo.svg" alt="A heart with Pandulu's name inside it" width="52" height="52" />
+    <span class="chapter-tag">chapter four &middot; make a wish</span>
+    <div class="chapter-dots" aria-hidden="true">
+      <span></span><span></span><span></span><span class="current"></span><span></span>
+    </div>
+  </div>
+
+  <section class="party-scene reveal-child" aria-hidden="true">
+    <div class="party-card">
+      <div class="bunting" id="wishBunting"></div>
+      <div class="party-floor">
+        <div class="party-confetti" aria-hidden="true"></div>
+        <div class="party-balloons">
+          <span class="party-balloon pb-1"></span>
+          <span class="party-balloon pb-2"></span>
+          <span class="party-balloon pb-3"></span>
+        </div>
+        <div class="cake-scene party-cake-scene">
+          <div class="cake">
+            <div class="cake-tier tier-1"></div>
+            <div class="cake-tier tier-2"></div>
+            <div class="cake-tier tier-3"></div>
+            <div class="cake-candle">
+              <div class="wick" aria-hidden="true"></div>
+              <div class="flame cake-flame" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="party-photo-frame" aria-hidden="true">
+          <img src="images/09-blue-saree-day.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wish reveal" id="wish">
+    <span class="label reveal-child">before you blow out the real ones</span>
+    <h2 class="reveal-child">Make a wish</h2>
+    <div class="glass-card glass-card-tight reveal-child">
+      <p>One candle, just for practice. Whatever you wish for &mdash; I hope I get to be part of it.</p>
+      <div class="candle-wrap">
+        <div class="candle">
+          <div class="wick" aria-hidden="true"></div>
+          <div class="flame" id="flame" aria-hidden="true"></div>
+        </div>
+        <button class="btn" id="blowBtn" type="button">blow it out</button>
+        <p class="wish-note" id="wishNote">wherever that wish goes, I hope it comes true &mdash; and if it needs help, I'm right here.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="next-wrap">
+    <a class="btn-next" href="celebrate.html">one more thing <span class="arrow">&rarr;</span></a>
+    <span class="next-hint">go on, celebrate a little</span>
+  </div>
+</main>
+
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+/* Each page commits to its own atmosphere — a distinct chapter in the same story. */
+
+body[data-page="invite"] {
+  background: radial-gradient(circle at 50% 30%, #101a30 0%, #0b1220 70%);
+}
+
+body[data-page="hero"] {
+  background:
+    radial-gradient(circle at 50% 8%, rgba(232, 163, 92, 0.16), transparent 55%),
+    linear-gradient(165deg, #2b1710 0%, #1a0f0a 55%, #100906 100%);
+}
+
+body[data-page="letter"] {
+  background:
+    radial-gradient(circle at 50% 12%, rgba(201, 69, 95, 0.14), transparent 55%),
+    linear-gradient(165deg, #2a1420 0%, #1b0f18 55%, #0f0810 100%);
+}
+
+body[data-page="gallery"] {
+  background:
+    radial-gradient(circle at 50% 10%, rgba(240, 199, 138, 0.12), transparent 55%),
+    linear-gradient(165deg, #1c1330 0%, #150e26 55%, #0a0716 100%);
+}
+
+body[data-page="wish"] {
+  background:
+    radial-gradient(circle at 50% 65%, rgba(232, 163, 92, 0.13), transparent 55%),
+    linear-gradient(165deg, #0d2230 0%, #0b1a24 55%, #060d12 100%);
+}
+
+body[data-page="celebrate"] {
+  background:
+    radial-gradient(circle at 50% 30%, rgba(232, 163, 92, 0.2), transparent 55%),
+    radial-gradient(circle at 50% 85%, rgba(201, 69, 95, 0.18), transparent 60%),
+    linear-gradient(165deg, #34102a 0%, #22091d 55%, #12060f 100%);
+}

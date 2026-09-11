@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chapter One &mdash; For Pandulu</title>
+<link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/themes.css" />
+</head>
+<body data-page="hero">
+
+<canvas id="sky"></canvas>
+<div class="hearts-layer" id="heartsLayer" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<audio id="bgMusic" src="audio/opening-theme.mp3" data-continuous-key="opening-theme" preload="auto"></audio>
+<button class="music-toggle" id="musicToggle" type="button" aria-label="Toggle music">
+  <span class="music-toggle-icon" aria-hidden="true"></span>
+</button>
+<a class="back-link" href="index.html">&larr; the envelope</a>
+
+<main>
+  <div class="page-header">
+    <div class="bunting page-bunting"></div>
+    <img class="logo-badge" src="images/logo.svg" alt="A heart with Pandulu's name inside it" width="52" height="52" />
+    <span class="chapter-tag">chapter one &middot; the birthday morning</span>
+    <div class="chapter-dots" aria-hidden="true">
+      <span class="current"></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <section class="hero" id="hero">
+    <span class="label">a small letter, before the candles</span>
+    <h1>For Pandulu</h1>
+    <p class="sub">my girlfriend, my wife in every way that matters, my everything &mdash; on the one day of the year made just for her.</p>
+
+    <div class="cake-scene" aria-hidden="true">
+      <div class="cake">
+        <div class="cake-tier tier-1"></div>
+        <div class="cake-tier tier-2"></div>
+        <div class="cake-tier tier-3"></div>
+        <div class="cake-candle">
+          <div class="wick" aria-hidden="true"></div>
+          <div class="flame cake-flame" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="next-wrap">
+    <a class="btn-next" href="letter.html">read the letter <span class="arrow">&rarr;</span></a>
+    <span class="next-hint">there's more, if you keep going</span>
+  </div>
+</main>
+
+<script src="js/script.js"></script>
+</body>
+</html>
