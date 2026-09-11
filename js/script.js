@@ -54,23 +54,59 @@
     });
   })();
 
+  // ---------- Cinematic page transitions (film-cut cross-fade between pages) ----------
+  (function pageTransitions() {
+    var overlay = document.createElement("div");
+    overlay.className = "page-transition";
+    overlay.setAttribute("aria-hidden", "true");
+    document.body.appendChild(overlay);
+
+    // Cover-to-reveal on arrival: two rAFs so the browser paints the opaque
+    // frame first, then transitions it away instead of skipping straight in.
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        overlay.classList.add("hidden");
+      });
+    });
+
+    if (reduceMotion) return;
+
+    document.querySelectorAll('a[href$=".html"]').forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        var href = link.getAttribute("href");
+        if (!href || link.target === "_blank") return;
+        e.preventDefault();
+        overlay.classList.remove("hidden");
+        setTimeout(function () {
+          window.location.href = href;
+        }, 480);
+      });
+    });
+  })();
+
   // ---------- Starfield + embers ----------
   (function starfield() {
     var canvas = document.getElementById("sky");
     if (!canvas) return;
-    var ctx = canvas.getContext("2d");
+    var ctx = canvas.getContext("2d", { alpha: true });
+    var isCoarse = window.matchMedia("(pointer: coarse)").matches;
     var stars = [];
     var embers = [];
     var w, h;
+    var running = true;
 
+    // Canvas is fixed to the viewport (see CSS), so it only ever needs to
+    // cover what's on screen, not the whole scrollable page.
     function resize() {
       w = canvas.width = window.innerWidth;
-      h = canvas.height = document.documentElement.scrollHeight;
+      h = canvas.height = window.innerHeight;
     }
 
     function initStars() {
       stars = [];
-      var count = Math.floor((w * h) / 9000);
+      var density = isCoarse ? 16000 : 9000;
+      var count = Math.min(140, Math.floor((w * h) / density));
       for (var i = 0; i < count; i++) {
         stars.push({
           x: Math.random() * w,
@@ -84,20 +120,23 @@
 
     function initEmbers() {
       embers = [];
-      var count = 14;
+      var count = isCoarse ? 6 : 14;
       for (var i = 0; i < count; i++) {
         embers.push({
           x: Math.random() * w,
           y: h + Math.random() * h,
           r: Math.random() * 2 + 1,
           drift: (Math.random() - 0.5) * 0.3,
-          speed: 0.15 + Math.random() * 0.25
+          speed: 0.15 + Math.random() * 0.25,
+          grad: null,
+          gradKey: ""
         });
       }
     }
 
     var t = 0;
     function draw() {
+      if (!running) return;
       t += 0.02;
       ctx.clearRect(0, 0, w, h);
 
@@ -118,14 +157,23 @@
           if (e.y < -10) {
             e.y = h + 10;
             e.x = Math.random() * w;
+            e.grad = null;
           }
         }
-        var grad = ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, e.r * 4);
-        grad.addColorStop(0, "rgba(232,163,92,0.35)");
-        grad.addColorStop(1, "rgba(232,163,92,0)");
+        // Gradients are pinned to a rounded position so they can be reused
+        // across frames instead of allocated every draw call.
+        var rx = Math.round(e.x / 6) * 6;
+        var ry = Math.round(e.y / 6) * 6;
+        var key = rx + "," + ry;
+        if (!e.grad || e.gradKey !== key) {
+          e.grad = ctx.createRadialGradient(rx, ry, 0, rx, ry, e.r * 4);
+          e.grad.addColorStop(0, "rgba(232,163,92,0.35)");
+          e.grad.addColorStop(1, "rgba(232,163,92,0)");
+          e.gradKey = key;
+        }
         ctx.beginPath();
-        ctx.arc(e.x, e.y, e.r * 4, 0, Math.PI * 2);
-        ctx.fillStyle = grad;
+        ctx.arc(rx, ry, e.r * 4, 0, Math.PI * 2);
+        ctx.fillStyle = e.grad;
         ctx.fill();
       }
 
@@ -140,12 +188,18 @@
       initStars();
       initEmbers();
     });
+    document.addEventListener("visibilitychange", function () {
+      var wasRunning = running;
+      running = document.visibilityState === "visible";
+      if (running && !wasRunning) requestAnimationFrame(draw);
+    });
     draw();
   })();
 
   // ---------- Cursor spotlight ----------
   (function cursorGlow() {
     if (reduceMotion) return;
+    if (window.matchMedia("(pointer: coarse)").matches) return;
     var glow = document.getElementById("cursorGlow");
     if (!glow) return;
     var targetX = window.innerWidth / 2;
@@ -176,6 +230,7 @@
     if (reduceMotion) return;
     var layer = document.getElementById("heartsLayer");
     if (!layer) return;
+    var isCoarse = window.matchMedia("(pointer: coarse)").matches;
     var glyphs = ["♥", "❤"];
 
     function spawn() {
@@ -193,7 +248,7 @@
       }, duration * 1000 + 500);
     }
 
-    setInterval(spawn, 1800);
+    setInterval(spawn, isCoarse ? 3200 : 1800);
     spawn();
   })();
 
@@ -201,6 +256,7 @@
   (function floatingBalloons() {
     var layer = document.getElementById("balloonsLayer");
     if (!layer || reduceMotion) return;
+    var isCoarse = window.matchMedia("(pointer: coarse)").matches;
     var colors = ["c-amber", "c-rose", "c-dusk", "c-cream"];
 
     function spawn() {
@@ -218,7 +274,7 @@
       }, duration * 1000 + 500);
     }
 
-    setInterval(spawn, 3200);
+    setInterval(spawn, isCoarse ? 5200 : 3200);
     spawn();
     setTimeout(spawn, 1200);
   })();

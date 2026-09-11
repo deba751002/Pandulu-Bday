@@ -98,6 +98,24 @@ main {
   z-index: 2;
 }
 
+/* ---------- Cinematic page transition (film-cut cross-fade) ---------- */
+
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--ink);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.page-transition.hidden { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition { transition: none; }
+}
+
 .label {
   text-transform: uppercase;
   letter-spacing: 0.22em;
@@ -236,7 +254,7 @@ section {
   flex-direction: column;
   align-items: center;
   gap: 0.6rem;
-  padding: 4vh 1.5rem 10vh;
+  padding: 4vh 1.5rem calc(6vh + env(safe-area-inset-bottom, 0px) + 2rem);
   text-align: center;
   position: relative;
   z-index: 2;
@@ -290,6 +308,14 @@ section {
   -webkit-backdrop-filter: blur(18px) saturate(1.1);
   box-shadow: 0 24px 60px var(--shadow), inset 0 1px 0 var(--glass-highlight);
   position: relative;
+}
+
+@media (pointer: coarse) {
+  /* Heavy blur is one of the priciest paints on mobile GPUs; keep the look, cut the radius. */
+  .glass-card, .btn-next {
+    backdrop-filter: blur(8px) saturate(1.05);
+    -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  }
 }
 
 .glass-card::before {
@@ -366,6 +392,7 @@ section {
 .gate {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -713,6 +740,7 @@ section {
 
 .hero {
   min-height: 82vh;
+  min-height: 82svh;
   display: flex;
   flex-direction: column;
   align-items: center;
