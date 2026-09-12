@@ -4,6 +4,8 @@
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   var PHOTOS = [
+    { src: "images/18-best-senior.jpg", alt: "Pandulu smiling with a rose in her hair and a 'Best Senior' badge pinned to her saree", caption: "wearing 'best senior' like it's nothing", featured: true },
+    { src: "images/19-so-proud-of-you.jpg", alt: "Pandulu smiling close-up, still wearing her 'Best Senior' badge", caption: "so proud of you, always", featured: true },
     { src: "images/01-where-it-started.jpg", alt: "Pandulu smiling at a table, an early evening together", caption: "where it started" },
     { src: "images/02-that-first-ride.jpg", alt: "Pandulu on the back of a scooter at night", caption: "that first ride together" },
     { src: "images/03-trying-on-colors.jpg", alt: "Pandulu and partner in a mirror selfie at a clothing store", caption: "trying on colors together" },
@@ -519,7 +521,7 @@
 
     function buildFrame(photo, rowIndex) {
       var figure = document.createElement("figure");
-      figure.className = "frame reveal-child in-view";
+      figure.className = "frame reveal-child in-view" + (photo.featured ? " frame-featured" : "");
       figure.setAttribute("tabindex", "0");
       figure.setAttribute("role", "button");
       figure.style.setProperty("--tilt", (Math.random() * 4 - 2).toFixed(2) + "deg");
@@ -536,6 +538,13 @@
       img.alt = photo.alt;
       img.loading = "lazy";
       inner.appendChild(img);
+
+      if (photo.featured) {
+        var ribbon = document.createElement("span");
+        ribbon.className = "frame-ribbon";
+        ribbon.textContent = "just in";
+        inner.appendChild(ribbon);
+      }
 
       var caption = document.createElement("figcaption");
       caption.textContent = photo.caption;
