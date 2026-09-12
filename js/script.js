@@ -5,10 +5,10 @@
 
   var PHOTOS = [
     { src: "images/18-best-senior.jpg", alt: "Pandulu smiling with a rose in her hair and a 'Best Senior' badge pinned to her saree", caption: "wearing 'best senior' like it's nothing", featured: true },
-    { src: "images/19-so-proud-of-you.jpg", alt: "Pandulu smiling close-up, still wearing her 'Best Senior' badge", caption: "so proud of you, always", featured: true },
     { src: "images/01-where-it-started.jpg", alt: "Pandulu smiling at a table, an early evening together", caption: "where it started" },
     { src: "images/02-that-first-ride.jpg", alt: "Pandulu on the back of a scooter at night", caption: "that first ride together" },
     { src: "images/03-trying-on-colors.jpg", alt: "Pandulu and partner in a mirror selfie at a clothing store", caption: "trying on colors together" },
+    { src: "images/19-so-proud-of-you.jpg", alt: "Pandulu smiling close-up, still wearing her 'Best Senior' badge", caption: "so proud of you, always", featured: true },
     { src: "images/04-off-on-an-adventure.jpg", alt: "Pandulu at an airport holding a drink", caption: "off on an adventure" },
     { src: "images/05-an-ordinary-day.jpg", alt: "Pandulu on a scooter in the daytime", caption: "the day we cried, together" },
     { src: "images/06-festival-lights.jpg", alt: "Pandulu dressed up for a festival evening", caption: "festival lights" },
@@ -538,13 +538,6 @@
       img.alt = photo.alt;
       img.loading = "lazy";
       inner.appendChild(img);
-
-      if (photo.featured) {
-        var ribbon = document.createElement("span");
-        ribbon.className = "frame-ribbon";
-        ribbon.textContent = "just in";
-        inner.appendChild(ribbon);
-      }
 
       var caption = document.createElement("figcaption");
       caption.textContent = photo.caption;
